@@ -3,6 +3,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useGlobalFilter, useSortBy, useTable } from "react-table";
 import tw from "twin.macro";
 import { GlobalFilter } from "./globalFilter";
+const cors = require('cors');
+
 
 const Table = tw.table`
   table-fixed
@@ -52,14 +54,15 @@ export function Products(props) {
 
     const fetchProducts = async () => {
         const response = await axios
-            .get("https://proxy.cors.sh/http://sys-error-log.us-e2.cloudhub.io/api/getLogs", {
-                headers: {
-                    'X-Requested-With': 'ASDAS'
-                    //   'Access-Control-Allow-Origin': '*',
-                    //   'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-                    //   'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
-                }
-            })
+            .get("https://sys-error-log.us-e2.cloudhub.io/api/getLogs", //cors(),
+                {
+                    headers: {
+                        // 'X-Requested-With': 'helloww'
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+                    }
+                })
             .catch((err) => console.log(err));
 
         if (response) {
