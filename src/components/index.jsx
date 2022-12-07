@@ -51,16 +51,16 @@ const Button = tw.button`
 
 export function Products(props) {
     const [products, setProducts] = useState([]);
-
     const fetchProducts = async () => {
         const response = await axios
             .get("https://sys-error-log.us-e2.cloudhub.io/api/getLogs", //cors(),
                 {
                     headers: {
                         // 'X-Requested-With': 'helloww'
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-                        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+                      //  'Access-Control-Allow-Origin': '*',
+                      //  'Content-Type': 'application/x-www-form-urlencoded',
+                      //  'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                      //  'Access-Control-Allow-Headers': 'Access-Control-Allow-Origin, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
                     }
                 })
             .catch((err) => console.log(err));
@@ -71,6 +71,7 @@ export function Products(props) {
             console.log("Products: ", products);
             setProducts(products);
         }
+      
     };
 
     const data = useMemo(
